@@ -68,24 +68,5 @@ const isOnlyFigure = /^([0-9])$/;
  checkAge(61);
 
 // 4***: Преобразовать задание 3* таким образом, чтобы возраст вводится используя функцию prompt в привязанной верстке
-const age_2 = 18;
-const age_3 = 60;
-const isOnlyFigure = /^([0-9])$/;
 
- const checkAge = (age) => {
-    if (isOnlyFigure.test(Number(age)) || typeof age === 'number'){
-        if ( age < age_2){
-            console.log("You don't have access cause your age is " + age + " It's less then")
-        } else if ((age >= age_2)&&(age < age_3)) {
-          console.log("Welcome  !")
-        } else if (age >=age_3){
-          console.log("Keep calm and look Culture channel")
-        } else {
-          console.log("Technical work")
-        }
-    } else if (typeof age !== 'number') {
- 		console.log("Warning! Only number value!")
-    }
-}
- checkAge(61);
 
