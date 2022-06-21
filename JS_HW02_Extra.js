@@ -94,6 +94,32 @@ getWord ('case');
 getWord ('Case');
 getWord ('Check-list');
 
+//for different languages
+const vowelsEn = /[aeiou]/gi;
+const consonantsEn = /(?![aeiou])[a-z]/gi;
+const vowelsRu = /[аяуюоеёэиы]/gi;
+const consonantsRU = /(?![аяуюоеёэиы])[А-яЁё]/gi;
+
+const getWord = (word) => {
+    let quantityVowelsEn = word.match(vowelsEn);
+    let quantityconsonantsEn = word.match(consonantsEn);
+    let quantityVowelsRu = word.match(vowelsRu);
+    let quantityconsonantsRu = word.match(consonantsRU);
+
+    if ((quantityVowelsEn || quantityconsonantsEn)  && !quantityVowelsRu && !quantityconsonantsRu) {
+        console.log('The Word '+ word +' consists of ' + (quantityVowelsEn || []).length + ' vowels and ' + (quantityconsonantsEn || []).length + ' consonant(s)');
+    } else if ((quantityVowelsRu || quantityconsonantsRu) && !quantityVowelsEn && !quantityconsonantsEn){
+        console.log('Слово '+ word +' состоит из ' + (quantityVowelsRu || []).length + ' гласных и ' + (quantityconsonantsRu || []).length + ' согласных букв');
+    } else {
+        console.log("Use only words - Используйте только слова!");
+    }
+}
+getWord ('Алоэ');
+getWord ('вера');
+getWord ('case');
+getWord ('Case');
+getWord ('Check-list');
+
 //4**. Написать функцию, которая проверяет, является ли слово палиндромом
 //e.g. function isPalindrom(word)
 //
