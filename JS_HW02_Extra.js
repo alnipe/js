@@ -43,12 +43,24 @@ for ( let i = 1; i <= 5; i++) {
     console.log(res.slice(2));
 }
 //
+res =':)';
+let acc = '';
 
-
+for ( let i = 1; i <= 5; i++) {
+    acc += res
+    console.log(acc);
+}
 
 //2*. Преобразовать 2 задачу в функцию, принимающую на вход строку, которая и будет выводиться в консоль (как в условии смайлик), а также количество строк для вывода 
 //e.g. function printSmile(stroka, numberOfRows)
+let acc = '';
 
+const count = (res, numberOfRows) => {
+    for ( let i = 1; i <= numberOfRows; i++) {
+        console.log(i, acc += res);
+    }
+}
+count(':)', 5);
 
 
 
@@ -58,8 +70,27 @@ for ( let i = 1; i <= 5; i++) {
 //Слово (word) состоит из  (число) гласных и (число) согласных букв
 //
 //Проверки: 'case', 'Case', 'Check-list'
-/
+const getWord = (word) => {
+    let vowels =  /[aeiou]/gi;
+    let consonants = /(?![aeiou])[a-z]/gi;
+    let resultVow = word.match(vowels);
+    let countVow = resultVow.length;
+    let resultCons = word.match(consonants);
+    console.log (resultCons)
+    let countCons = resultCons.length;
+    console.log('Слово '+ word +' состоит из ' + countVow + ' гласных и ' + countCons + ' согласных букв');
+}
+getWord ('case');
+getWord ('Case');
+getWord ('Check-list');
 
+//
+const getWord = (word) => {
+    console.log('Слово '+ word +' состоит из ' + (word.match(/[aeiou]/gi) || []).length + ' гласных и ' + (word.match(/(?![aeiou])[a-z]/gi) || []).length + ' согласных букв');
+}
+getWord ('case');
+getWord ('Case');
+getWord ('Check-list');
 
 //4**. Написать функцию, которая проверяет, является ли слово палиндромом
 //e.g. function isPalindrom(word)
