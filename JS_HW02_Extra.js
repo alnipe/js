@@ -70,6 +70,8 @@ count(':)', 5);
 //Слово (word) состоит из  (число) гласных и (число) согласных букв
 //
 //Проверки: 'case', 'Case', 'Check-list'
+//
+//first_way
 const getWord = (word) => {
     let vowels =  /[aeiou]/gi;
     let consonants = /(?![aeiou])[a-z]/gi;
@@ -84,7 +86,7 @@ getWord ('case');
 getWord ('Case');
 getWord ('Check-list');
 
-//
+//second_way
 const getWord = (word) => {
     console.log('Слово '+ word +' состоит из ' + (word.match(/[aeiou]/gi) || []).length + ' гласных и ' + (word.match(/(?![aeiou])[a-z]/gi) || []).length + ' согласных букв');
 }
