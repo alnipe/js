@@ -1,6 +1,5 @@
-//HW_2_JS Extra_Tasks.
-//
-//1. Написать скриптик, который сосчитает и выведет результат от возведения 2 в степень 10, начиная со степени 1
+/*HW_2_JS Extra_Tasks.
+1. Написать скриптик, который сосчитает и выведет результат от возведения 2 в степень 10, начиная со степени 1*/
 let res =1;
 
 for ( let i = 1; i <= 10; i++) {
@@ -21,13 +20,13 @@ const expReal = function pow() {
 }
 expReal(num,exp);
 
-//2. Написать скрипт, который выведет 5 строк в консоль таким образом, чтобы в первой строчке выводилось :), во второй :):) и так далее
-//Пример в консоли:
-//:)
-//:):)
-//:):):)
-//:):):):)
-//:):):):):)
+/*2. Написать скрипт, который выведет 5 строк в консоль таким образом, чтобы в первой строчке выводилось :), во второй :):) и так далее
+Пример в консоли:
+:)
+:):)
+:):):)
+:):):):)
+:):):):):) */
 
 res =[':)',':):)',':):):)',':):):):)',':):):):):)'];
 
@@ -51,8 +50,8 @@ for ( let i = 1; i <= 5; i++) {
     console.log(acc);
 }
 
-//2*. Преобразовать 2 задачу в функцию, принимающую на вход строку, которая и будет выводиться в консоль (как в условии смайлик), а также количество строк для вывода 
-//e.g. function printSmile(stroka, numberOfRows)
+/*2*. Преобразовать 2 задачу в функцию, принимающую на вход строку, которая и будет выводиться в консоль (как в условии смайлик), а также количество строк для вывода 
+e.g. function printSmile(stroka, numberOfRows) */
 let acc = '';
 
 const count = (res, numberOfRows) => {
@@ -64,13 +63,12 @@ count(':)', 5);
 
 
 
-//3**.  Написать функцию, которая принимает на вход слово. Задача функции посчитать и вывести в консоль, сколько в слове гласных, и сколько согласных букв.
-//e.g. function getWordStructure(word)
-//В консоли: 
-//Слово (word) состоит из  (число) гласных и (число) согласных букв
-//
-//Проверки: 'case', 'Case', 'Check-list'
-//
+/*3**.  Написать функцию, которая принимает на вход слово. Задача функции посчитать и вывести в консоль, сколько в слове гласных, и сколько согласных букв.
+e.g. function getWordStructure(word)
+В консоли: 
+Слово (word) состоит из  (число) гласных и (число) согласных букв
+Проверки: 'case', 'Case', 'Check-list' */
+
 //first_way
 const getWord = (word) => {
     let vowels =  /[aeiou]/gi;
@@ -115,7 +113,38 @@ getWord ('case');
 getWord ('Case');
 getWord ('Check-list');
 
-//4**. Написать функцию, которая проверяет, является ли слово палиндромом
-//e.g. function isPalindrom(word)
-//
-//Проверки: 'abba', 'Abba'
+/*4**. Написать функцию, которая проверяет, является ли слово палиндромом
+e.g. function isPalindrom(word)
+Проверки: 'abba', 'Abba' */
+const isPalindrom = (word) => {
+    wordlower = word.toLowerCase();
+    const alphabetEn = wordlower.match(/[A-z]/gi);
+    const alphabetRu = wordlower.match(/[А-яЁё]/gi);
+    const digitals = word.match(/[0-9]/gi);
+        
+    if (alphabetEn && !digitals) {
+        if (((alphabetEn.join()) == (alphabetEn.reverse().join()))) {
+            console.log((word + " is Palindrom"));
+        } else {
+            console.log((word + " is not Palindrom"));
+            }
+    } else if (alphabetRu && !digitals){
+        if (((alphabetRu.join()) == (alphabetRu.reverse().join()))) {
+            console.log((word + " - это палиндром"));
+        } else {
+            console.log((word + " - это не палиндром"));
+            }
+    } else if (digitals && !alphabetEn && !alphabetRu){
+        if (((digitals.join()) == (digitals.reverse().join()))) {
+                console.log((word + " - is digital Palindrom"));
+            } else {
+                console.log((word + " - is not Palindrom"));
+                } 
+    } else {
+        console.log((word + " is not Palindrom"));
+    
+}
+}
+isPalindrom('а роза упала на лапу Азора');
+isPalindrom('abba');
+isPalindrom('Abba');
