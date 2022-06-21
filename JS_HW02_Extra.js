@@ -95,16 +95,11 @@ getWord ('Case');
 getWord ('Check-list');
 
 //for different languages
-const vowelsEn = /[aeiou]/gi;
-const consonantsEn = /(?![aeiou])[a-z]/gi;
-const vowelsRu = /[аяуюоеёэиы]/gi;
-const consonantsRU = /(?![аяуюоеёэиы])[А-яЁё]/gi;
-
 const getWord = (word) => {
-    let quantityVowelsEn = word.match(vowelsEn);
-    let quantityconsonantsEn = word.match(consonantsEn);
-    let quantityVowelsRu = word.match(vowelsRu);
-    let quantityconsonantsRu = word.match(consonantsRU);
+    let quantityVowelsEn = word.match(/[aeiou]/gi);
+    let quantityconsonantsEn = word.match(/(?![aeiou])[a-z]/gi);
+    let quantityVowelsRu = word.match(/[аяуюоеёэиы]/gi);
+    let quantityconsonantsRu = word.match(/(?![аяуюоеёэиы])[А-яЁё]/gi);
 
     if ((quantityVowelsEn || quantityconsonantsEn)  && !quantityVowelsRu && !quantityconsonantsRu) {
         console.log('The Word '+ word +' consists of ' + (quantityVowelsEn || []).length + ' vowels and ' + (quantityconsonantsEn || []).length + ' consonant(s)');
