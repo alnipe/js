@@ -351,9 +351,7 @@ const users = [{
     }
 }
 ]
-// for (let elem of users){
-//     console.log(elem);
-// }
+
 function count(){
     let usernames = [];
     users.forEach((user) => {
