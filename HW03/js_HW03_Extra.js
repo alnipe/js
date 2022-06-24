@@ -57,6 +57,20 @@ count();
 
 
 /*Task 2*** Реализуйте считывание из JSONки из файла task2.json с помощью, например, модуля fs. для дальнейшего использования в функции, описанной в задании*/
+const users = require('./task2.json');
+
+function count(){
+    let usernames = [];
+    users.forEach((user) => {
+        if (!usernames.includes(JSON.stringify(user))) {
+            usernames.push(JSON.stringify(user));
+        }
+    });
+    let uniqUsers = usernames.map((obj) => JSON.parse(obj));
+    console.log(uniqUsers);
+}
+
+count(users);
 
 /*Task 3**
 В файле task3.txt найдете структуру компании и задания, необходимые выполнить.
