@@ -54,11 +54,10 @@ const enterprises = [
     }
   ]
 
-function entDestructuring() {
   enterprises.forEach((enterprise) => {
     let summEmployees = 0;
-    enterprise.departments.forEach((dep) => {
-    summEmployees += dep.employees_count
+    enterprise.departments.forEach((department) => {
+    summEmployees += department.employees_count
 })
   if (summEmployees < 1) {
     console.log(`${enterprise.name} (нет сотрудников)`)
@@ -73,5 +72,3 @@ function entDestructuring() {
       console.log(`- ${enterprise.departments[i].name} (${enterprise.departments[i].employees_count} сотрудников)`);
     }
 })
-}
-entDestructuring()
