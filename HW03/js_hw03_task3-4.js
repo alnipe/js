@@ -55,26 +55,32 @@ const enterprises = [
 ]
 
 function addDepartment(enterpriseId, newDepartmentName) {
-    let nextId = enterprises.length;
-    enterprises.forEach((enterprise) => {
-    nextId += enterprise.departments.length
-    })
-    const newDepartment = {
-        id: nextId+1,
-        name: newDepartmentName,
-        employees_count: 0,
-    }
-    let findEnterpriseId = enterprises.find(el => el.id == enterpriseId)
-        if (findEnterpriseId) {
-            const findDepartmentName = findEnterpriseId.departments.find(el => el.name == newDepartmentName)
-            if (findDepartmentName){
-                console.log(`This Department in '${findEnterpriseId.name}' already exists: ${JSON.stringify(findDepartmentName)}`);
-            }else{
-                findEnterpriseId.departments.push(newDepartment)
-                console.log(findEnterpriseId);
-            }
-        }else{
-            console.log(`No enterprise with id: ${enterpriseId}`)
-        }
+  let currentId = [];
+  enterprises.forEach((enterprise) => {
+      currentId.push(enterprise.id)
+      enterprise.departments.forEach((department) => {
+          currentId.push(department.id)
+      })
+  })
+  let nextId = Math.max(...currentId) + 1;
+
+  const newDepartment = {
+       id: nextId,
+       name: newDepartmentName,
+       employees_count: 0,
+   }
+  
+   let findEnterpriseId = enterprises.find(el => el.id == enterpriseId)
+      if (findEnterpriseId) {
+          const findDepartmentName = findEnterpriseId.departments.find(el => el.name == newDepartmentName)
+          if (findDepartmentName){
+              console.log(`This Department in '${findEnterpriseId.name}' already exists: ${JSON.stringify(findDepartmentName)}`);
+          }else{
+              findEnterpriseId.departments.push(newDepartment)
+              console.log(findEnterpriseId);
+          }
+      }else{
+          console.log(`No enterprise with id: ${enterpriseId}`)
+      }
 }
 addDepartment (1,'АХО');

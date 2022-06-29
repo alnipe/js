@@ -56,14 +56,17 @@ const enterprises = [
 
 function addEnterprise(newEnterpriseName) {
   let newEnterprises = enterprises
-  let nextId = enterprises.length;   
-  
-  enterprises.forEach((enterprise) => {
-    nextId += enterprise.departments.length
-  })
+  let currentId = [];
+    enterprises.forEach((enterprise) => {
+        currentId.push(enterprise.id)
+        enterprise.departments.forEach((department) => {
+            currentId.push(department.id)
+        })
+    })
+  let nextId = Math.max(...currentId) + 1;
   
   const newEnterprise = {
-    id: nextId+1,
+    id: nextId,
     name: newEnterpriseName,
     departments: []
   }
