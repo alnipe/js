@@ -179,19 +179,53 @@ addDepartment (1,'АХО');
 
 Пример:
 editEnterprise(1, "Новое название предприятия")*/
-
+function editEnterprise(enterpriseId, newEnterpriseName) {
+  let newEnterprises = enterprises;
+  let findEnterpriseId = enterprises.find(el => el.id == enterpriseId);
+      if (findEnterpriseId) {
+        findEnterpriseId.name = newEnterpriseName
+        console.log(newEnterprises);
+      }else{
+        console.log(`No enterprise with id: ${enterpriseId}`)
+        console.log(newEnterprises);
+      }
+}
+editEnterprise (1,'Новое название предприятия');
 
 /*6. Написать функцию для редактирования названия отдела. Принимает в качестве аргумента id отдела и новое имя отдела.
 
 Пример:
 editDepartment(7, "Новое название отдела")*/
-
+function editDepartment(departmentId, newDepartmentName) {
+    enterprises.forEach((enterprise) => {
+        const findDepartment = enterprise.departments.find(el => el.id == departmentId)
+        if (findDepartment) {
+            findDepartment.name = newDepartmentName
+            console.log(`${enterprise.name} - department with id: ${departmentId} has been changed to ${JSON.stringify(findDepartment.name)}`);
+        }else{
+            console.log(`${enterprise.name} - does not have a department with id: ${departmentId}`)
+        }
+    })
+}
+editDepartment (7,'Новое название отдела');
 
 /*7. Написать функцию для удаления предприятия. В качестве аргумента принимает id предприятия.
 
 Пример:
 deleteEnterprise(1)*/
-
+function deleteEnterprise(enterpriseId) {
+    let newEnterprises = enterprises;
+    const findEnterpriseId = enterprises.find(el => el.id == enterpriseId);
+        if (findEnterpriseId) {
+            const enterpriseIndex = newEnterprises.indexOf(findEnterpriseId);
+            newEnterprises.splice(enterpriseIndex, 1);
+            console.log(newEnterprises);
+        }else{
+          console.log(`No enterprise with id: ${enterpriseId}`)
+          console.log(newEnterprises);
+        }
+  }
+  deleteEnterprise (1);
 
 /*8. Написать функцию для удаления отдела. В качестве аргумента принимает id отдела. Удалить отдел можно только, если в нем нет сотрудников.
 
