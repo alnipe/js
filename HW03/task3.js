@@ -128,11 +128,11 @@ function addEnterprise(newEnterpriseName) {
   }
 
   const findEnterpriseName = enterprises.find(el => el.name == newEnterpriseName)
-  if (!!!findEnterpriseName) {
+  if (findEnterpriseName) {
+    console.log(`This Enterprise already exists`);
+  }else{
     newEnterprises.push(newEnterprise)
     console.log(newEnterprises);
-  }else{
-    console.log(`This Enterprise already exists`);
   }
 }
 addEnterprise ('Предприятие 4');
