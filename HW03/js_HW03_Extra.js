@@ -73,46 +73,9 @@ function count(){
 count(users);
 
 /*Task 3**
-В файле task3.txt найдете структуру компании и задания, необходимые выполнить.
+В файле task3.txt найдете структуру компании и задания, необходимые выполнить. (переименовал task3.txt в task3.js для удобства)
 
 Примечание: ВСЕ задания выполнять не обязательно, если вам люто сложно. Но ПЕРВОЕ - прям надо всем:) */
-
-//*Task 3-1
-enterprises.forEach((enterprise) => {
-    let summEmployees = 0;
-    enterprise.departments.forEach((department) => {
-    summEmployees += department.employees_count
-})
-  if (summEmployees < 1) {
-    console.log(`${enterprise.name} (нет сотрудников)`)
-  }else{
-    console.log(`${enterprise.name} (${summEmployees} сотрудников)`)
-  }
-
-  for (let i = 0; i < enterprise.departments.length; i++)
-    if (enterprise.departments[i].employees_count < 1) {
-      console.log(`- ${enterprise.departments[i].name} (нет сотрудников)`);
-    } else {
-      console.log(`- ${enterprise.departments[i].name} (${enterprise.departments[i].employees_count} сотрудников)`);
-    }
-})
-
-//*Task 3-2
-const getEnterpriseName = function (data) {
-      
-    enterprises.forEach((enterprise) => {
-        if (typeof data == "number" && enterprise.id == data) {
-            console.log(enterprise.name);
-        }else if (typeof data == "string"){
-            enterprise.departments.forEach((department) =>{
-                if (department.name == data){
-                    console.log(enterprise.name)
-                }
-            })
-        }    
-    })
-}
-getEnterpriseName ('Отдел маркетинга');
 
 /*Task 4****
 
