@@ -54,15 +54,20 @@ const enterprises = [
   }
 ]
 
-function deleteEnterprise(enterpriseId) {
-    const findEnterpriseId = enterprises.find(el => el.id == enterpriseId);
-        if (findEnterpriseId) {
-            const enterpriseIndex = enterprises.indexOf(findEnterpriseId);
-            enterprises.splice(enterpriseIndex, 1);
-            console.log(enterprises);
+function deleteDepartment(departmentId) {
+    enterprises.forEach((enterprise) => {
+        const findDepartment = enterprise.departments.find(el => el.id == departmentId)
+        if (findDepartment) {
+            if (findDepartment.employees_count == 0) {
+                const enterpriseIndex = enterprise.departments.indexOf(findDepartment);
+                enterprise.departments.splice(enterpriseIndex, 1)
+                console.log(`Department '${findDepartment.name}' has been removed from '${enterprise.name}'`);
+                console.log(enterprise);                
+            }else{
+                console.log(`A department can be removed only if it has no employees - '${findDepartment.name}' has ${findDepartment.employees_count} employees`);
+            }
         }else{
-          console.log(`No enterprise with id: ${enterpriseId}`)
-          console.log(enterprises);
         }
-  }
-  deleteEnterprise (5);
+    })
+}
+deleteDepartment (10);

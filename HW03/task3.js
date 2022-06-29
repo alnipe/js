@@ -214,24 +214,39 @@ editDepartment (7,'Новое название отдела');
 Пример:
 deleteEnterprise(1)*/
 function deleteEnterprise(enterpriseId) {
-    let newEnterprises = enterprises;
     const findEnterpriseId = enterprises.find(el => el.id == enterpriseId);
         if (findEnterpriseId) {
-            const enterpriseIndex = newEnterprises.indexOf(findEnterpriseId);
-            newEnterprises.splice(enterpriseIndex, 1);
-            console.log(newEnterprises);
+            const enterpriseIndex = enterprises.indexOf(findEnterpriseId);
+            enterprises.splice(enterpriseIndex, 1);
+            console.log(enterprises);
         }else{
           console.log(`No enterprise with id: ${enterpriseId}`)
-          console.log(newEnterprises);
+          console.log(enterprises);
         }
   }
-  deleteEnterprise (1);
+  deleteEnterprise (5);
 
 /*8. Написать функцию для удаления отдела. В качестве аргумента принимает id отдела. Удалить отдел можно только, если в нем нет сотрудников.
 
 Пример:
 deleteDepartment(3)*/
-
+function deleteDepartment(departmentId) {
+    enterprises.forEach((enterprise) => {
+        const findDepartment = enterprise.departments.find(el => el.id == departmentId)
+        if (findDepartment) {
+            if (findDepartment.employees_count == 0) {
+                const enterpriseIndex = enterprise.departments.indexOf(findDepartment);
+                enterprise.departments.splice(enterpriseIndex, 1)
+                console.log(`Department '${findDepartment.name}' has been removed from '${enterprise.name}'`);
+                console.log(enterprise);                
+            }else{
+                console.log(`A department can be removed only if it has no employees - '${findDepartment.name}' has ${findDepartment.employees_count} employees`);
+            }
+        }else{
+        }
+    })
+}
+deleteDepartment (10);
 
 /*9. Написать функцию для переноса сотрудников между отделами одного предприятия. В качестве аргумента принимает два значения: id отдела, из которого будут переноситься сотрудники и id отдела, в который будут переноситься сотрудники).
 
