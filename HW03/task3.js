@@ -235,8 +235,8 @@ function deleteDepartment(departmentId) {
         const findDepartment = enterprise.departments.find(el => el.id == departmentId)
         if (findDepartment) {
             if (findDepartment.employees_count == 0) {
-                const enterpriseIndex = enterprise.departments.indexOf(findDepartment);
-                enterprise.departments.splice(enterpriseIndex, 1)
+                const departmentIndex = enterprise.departments.indexOf(findDepartment);
+                enterprise.departments.splice(departmentIndex, 1)
                 console.log(`Department '${findDepartment.name}' has been removed from '${enterprise.name}'`);
                 console.log(enterprise);                
             }else{
@@ -252,4 +252,23 @@ deleteDepartment (10);
 
 Пример:
 moveEmployees(2, 3)*/
+function moveEmployees(sourceDepartmentId, destDepartmentId) {
+    enterprises.forEach((enterprise) => {
+      let findSourceDepartmentId = enterprise.departments.find(el => el.id == sourceDepartmentId)
+      let findDestDepartmentId = enterprise.departments.find(el => el.id == destDepartmentId)
+          if (findSourceDepartmentId && (findSourceDepartmentId.employees_count > 0) && findDestDepartmentId && findSourceDepartmentId!=findDestDepartmentId) {
+            
+            newSourceEmployees_count = findSourceDepartmentId.employees_count - findSourceDepartmentId.employees_count;
+            
+            findDestDepartmentId.employees_count = findDestDepartmentId.employees_count + findSourceDepartmentId.employees_count;
+            findSourceDepartmentId.employees_count = newSourceEmployees_count
 
+            const sourceDepartmentIndex = enterprise.departments.indexOf(findSourceDepartmentId);
+            enterprise.departments.splice(sourceDepartmentIndex, 1, findSourceDepartmentId)
+            console.log(enterprise);
+          }else{
+        
+        }
+      })
+}
+moveEmployees (2,3);

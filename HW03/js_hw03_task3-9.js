@@ -54,18 +54,23 @@ const enterprises = [
   }
 ]
 
-function editDepartment(departmentId, newDepartmentName) {
+function moveEmployees(sourceDepartmentId, destDepartmentId) {
     enterprises.forEach((enterprise) => {
-        const findDepartment = enterprise.departments.find(el => el.id == departmentId)
-        if (findDepartment) {
-            findDepartment.name = newDepartmentName
-            console.log(`${enterprise.name} - department with id: ${departmentId} has been changed to ${JSON.stringify(findDepartment.name)}`);
-            const findDepartmentIndex = enterprise.departments.indexOf(findDepartment);
-            enterprise.departments.splice(findDepartmentIndex, 1, findDepartment)
+      let findSourceDepartmentId = enterprise.departments.find(el => el.id == sourceDepartmentId)
+      let findDestDepartmentId = enterprise.departments.find(el => el.id == destDepartmentId)
+          if (findSourceDepartmentId && (findSourceDepartmentId.employees_count > 0) && findDestDepartmentId && findSourceDepartmentId!=findDestDepartmentId) {
+            
+            newSourceEmployees_count = findSourceDepartmentId.employees_count - findSourceDepartmentId.employees_count;
+            
+            findDestDepartmentId.employees_count = findDestDepartmentId.employees_count + findSourceDepartmentId.employees_count;
+            findSourceDepartmentId.employees_count = newSourceEmployees_count
+
+            const sourceDepartmentIndex = enterprise.departments.indexOf(findSourceDepartmentId);
+            enterprise.departments.splice(sourceDepartmentIndex, 1, findSourceDepartmentId)
             console.log(enterprise);
-        }else{
-            console.log(`${enterprise.name} - does not have a department with id: ${departmentId}`)
+          }else{
+        
         }
-    })
+      })
 }
-editDepartment (7,'Новое название отдела');
+moveEmployees (2,3);
