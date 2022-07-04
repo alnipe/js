@@ -118,16 +118,19 @@ const company = [
 
 // }
 // companyTree()
+let count = ''
 function СompanyTree(company) {
   for (let index = 0; index < company.length; index++) {
       const element = company[index];
       console.log(
-          `${'-'.repeat(element.parent)} ${element.name}(${
+          `${count} ${element.name}(${
               element.users_count
           })`
       );
       if (element.children) {
-          СompanyTree(element.children);
+          count += '--';
+          СompanyTree(element.children, count);
+          count = count.slice (0,-2)
       }
   }
 }
